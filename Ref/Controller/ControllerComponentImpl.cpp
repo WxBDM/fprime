@@ -32,7 +32,7 @@ namespace Ref {
   {
     this->currPhase = 0;
     this->tlmWrite_CONTROLLER_CURRENT_PHASE(0);
-    this->currBettery = 0;
+    this->currBattery = 0;
     this->tlmWrite_CONTROLLER_CURRENT_BATTERY(0);
   }
 
@@ -84,7 +84,7 @@ namespace Ref {
         U32 sourceComponent
     )
   {
-    // TODO
+    this->log_WARNING_HI_CONTROLLER_MONITOR_ALERT_RECEIVED(sourceComponent);
   }
 
   // ----------------------------------------------------------------------
@@ -145,7 +145,12 @@ namespace Ref {
         U32 battery
     )
   {
-    // TODO
+    this->currBattery = battery;
+    F32 componentNum4 = 400;
+    // Send dod monitor component (#400) updated operations battery
+    this->opOut_out(0, 0, 0, componentNum4, battery, 0);
+    this->tlmWrite_CONTROLLER_CURRENT_BATTERY(battery);
+    this->log_ACTIVITY_HI_CONTROLLER_BATTERY_CHANGED(battery);
     this->cmdResponse_out(opCode,cmdSeq,Fw::COMMAND_OK);
   }
 

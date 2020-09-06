@@ -36,8 +36,12 @@ fileDownlinkBufferManag |  401 (0x191)  |          20           |             20
       scienceSim        | 1400 (0x578)  |          20           |            100             |               1               |         1        
      scienceDriver      | 1500 (0x5dc)  |          20           |            100             |               1               |         1        
     scienceManager      | 1600 (0x640)  |          20           |            100             |               2               |         2        
-      controller        | 1700 (0x6a4)  |          20           |            100             |               5               |         5        
-       scheduler        | 1800 (0x708)  |          20           |            inf.            |               3               |         3        
+      controller        | 1700 (0x6a4)  |          20           |            100             |               8               |         8        
+       scheduler        | 1800 (0x708)  |          20           |            100             |               5               |         5        
+        dodSim          | 1900 (0x76c)  |          20           |            100             |               2               |         2        
+       dodDriver        | 2000 (0x7d0)  |          20           |            100             |               1               |         1        
+      dodManager        | 2100 (0x834)  |          20           |            100             |               3               |         3        
+      dodMonitor        | 2200 (0x898)  |          20           |            inf.            |               3               |         3        
 -------------------------------------------------------------------------------------------------------------------------------------
 | INSTANCE NAME                 - Name of the instance object.                                                                      |
 | BASE ID (HEX)                 - Base ID set for the instance.                                                                     |

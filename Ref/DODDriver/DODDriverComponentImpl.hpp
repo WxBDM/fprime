@@ -17,7 +17,7 @@
 
 namespace Ref {
 
-  class DODDriverComponentImpl //: public DODDriverComponentBase
+  class DODDriverComponentImpl : public DODDriverComponentBase
   {
 
     public:

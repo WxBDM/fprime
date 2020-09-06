@@ -35,7 +35,10 @@
 #include <Ref/ScienceManager/ScienceManagerComponentImpl.hpp>
 #include <Ref/Controller/ControllerComponentImpl.hpp>
 #include <Ref/Scheduler/SchedulerComponentImpl.hpp>
-
+#include <Ref/DODSim/DODSimComponentImpl.hpp>
+#include <Ref/DODDriver/DODDriverComponentImpl.hpp>
+#include <Ref/DODManager/DODManagerComponentImpl.hpp>
+#include <Ref/DODMonitor/DODMonitorComponentImpl.hpp>
 void constructRefArchitecture(void);
 bool constructApp(bool dump, U32 port_number, char* hostname);
 void exitTasks(void);
@@ -76,5 +79,9 @@ extern Ref::ScienceDriverComponentImpl scienceDriver;
 extern Ref::ScienceManagerComponentImpl scienceManager;
 extern Ref::ControllerComponentImpl controller;
 extern Ref::SchedulerComponentImpl scheduler;
+extern Ref::DODSimComponentImpl dodSim;
+extern Ref::DODDriverComponentImpl dodDriver;
+extern Ref::DODManagerComponentImpl dodManager;
+extern Ref::DODMonitorComponentImpl dodMonitor;
 
 #endif

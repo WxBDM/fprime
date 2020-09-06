@@ -66,11 +66,11 @@ namespace Ref {
 
     if(this->critWarn == false) {
       if(this->lastDOD < this->dodThresholds[battery][0]) {
-        this->log_WARNING_HI_HEALTH_MONITOR_TEMP_CRITICAL_LO(this->lastDOD);
+        this->log_WARNING_HI_MONITOR_DOD_CRITICAL_LO(this->lastDOD);
         this->critWarn = true;
       }
       if(this->lastDOD > this->dodThresholds[battery][1]) {
-        this->log_WARNING_HI_HEALTH_MONITOR_TEMP_CRITICAL_HI(this->lastDOD);
+        this->log_WARNING_HI_MONITOR_DOD_CRITICAL_HI(this->lastDOD);
         this->critWarn = true;
       }
     } else {
@@ -101,7 +101,7 @@ namespace Ref {
     int batteryInt = battery;
     this->dodThresholds[batteryInt][0] = minDOD;
     this->dodThresholds[batteryInt][1] = maxDOD;
-    this->log_ACTIVITY_HI_HEALTH_MONITOR_THRESHOLD_CHANGED(battery, minDOD, maxDOD);
+    this->log_ACTIVITY_HI_MONITOR_DOD_THRESHOLD_CHANGED(battery, minDOD, maxDOD);
   }
 
   void DODMonitorComponentImpl ::

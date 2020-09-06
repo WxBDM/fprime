@@ -16,7 +16,7 @@
         </port>
         <port name="batteryOut" data_type="Ref::SchedMonitorBattery" kind="output">
         </port>
-        <port name="threshOut" data_type="Ref::SchedDODThresh" kind="output">
+        <port name="dodThreshOut" data_type="Ref::SchedDODThresh" kind="output">
         </port>
     </ports>
     <events>

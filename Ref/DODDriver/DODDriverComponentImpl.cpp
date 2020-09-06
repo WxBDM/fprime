@@ -24,7 +24,7 @@ namespace Ref {
 #if FW_OBJECT_NAMES == 1
     DODDriverComponentImpl(
         const char *const compName
-    ) //: DODDriverComponentBase(compName)
+    ) : DODDriverComponentBase(compName)
 #else
     DODDriverComponentImpl(void)
 #endif
@@ -39,7 +39,7 @@ namespace Ref {
         const NATIVE_INT_TYPE instance
     )
   {
-    //DODDriverComponentBase::init(queueDepth, instance);
+    DODDriverComponentBase::init(queueDepth, instance);
   }
 
   DODDriverComponentImpl ::

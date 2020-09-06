@@ -55,10 +55,10 @@ namespace Ref {
   void DODSimComponentImpl ::
     driverReqIn_handler(
         const NATIVE_INT_TYPE portNum,
-        F32 request
+        F32 currDOD
     )
   {
-    this->tempOut_out(0, this->currDOD);
+    this->dodOut_out(0, this->currDOD);
   }
 
   // ----------------------------------------------------------------------
@@ -73,8 +73,8 @@ namespace Ref {
     )
   {
     this->currDOD = depthOfDischarge;
-    this->tlmWrite_TEMPSIM_CURR_DOD(this->currDOD);
-    this->log_ACTIVITY_HI_TEMPSIM_DOD_CHANGED(depthOfDischarge);
+    this->tlmWrite_DODSIM_CURR_DOD(this->currDOD);
+    this->log_ACTIVITY_HI_DODSIM_DOD_CHANGED(depthOfDischarge);
     this->cmdResponse_out(opCode,cmdSeq,Fw::COMMAND_OK);
   }
 

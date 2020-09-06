@@ -175,7 +175,7 @@ Svc::AssertFatalAdapterComponentImpl fatalAdapter("fatalAdapter");
 
 Svc::FatalHandlerComponentImpl fatalHandler("fatalHandler");
 
-bool constructApp(//bool dump, U32 port_number, char* hostname
+bool constructApp(bool dump, U32 port_number, char* hostname
 ) {
 
 #if FW_PORT_TRACING
@@ -246,11 +246,9 @@ bool constructApp(//bool dump, U32 port_number, char* hostname
     dodDriver.init(10, 0);
     dodManager.init(10, 0);
     dodMonitor.init(10, 0);
-#if FW_OBJECT_NAMES == 1
 
     // Connect rate groups to rate group driver
     constructRefArchitecture();
-
     // dump topology if requested
     if (dump) {
 #if FW_OBJECT_REGISTRATION == 1
@@ -279,7 +277,7 @@ bool constructApp(//bool dump, U32 port_number, char* hostname
     tempManager.regCommands();
     controller.regCommands();
     dodSim.regCommands();
-    dodManager.regCommand();
+    dodManager.regCommands();
 
     // read parameters
     prmDb.readParamFile();

@@ -926,11 +926,11 @@
    </connection>
    <connection name = "DODSimReg">
         <source component = "dodSim" port = "CmdReg" type = "CmdReg" num = "0"/>
-        <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "20"/>
+        <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "26"/>
    </connection>
    <connection name = "DODManagerReg">
         <source component = "dodManager" port = "CmdReg" type = "CmdReg" num = "0"/>
-        <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "22"/>
+        <target component = "cmdDisp" port = "compCmdReg" type = "CmdReg" num = "28"/>
    </connection>
 
     <!-- Command Dispatch Ports - Dispatch port number must match registration port for each component -->
@@ -948,11 +948,11 @@
         <target component = "controller" port = "CmdDisp" type = "Cmd" num = "0"/>
    </connection>
    <connection name = "DODSimDisp">
-        <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "20"/>
+        <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "26"/>
         <target component = "dodSim" port = "CmdDisp" type = "Cmd" num = "0"/>
    </connection>
    <connection name = "DODManagerDisp">
-        <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "22"/>
+        <source component = "cmdDisp" port = "compCmdSend" type = "Cmd" num = "28"/>
         <target component = "dodManager" port = "CmdDisp" type = "Cmd" num = "0"/>
    </connection>
    
@@ -971,12 +971,12 @@
       <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
    <connection name = "DODSimReply">
-        <source component = "dodSim" port = "cmdStatus" type = "CmdResponse" num = "0"/>
-        <target component = "cmdDisp" port = "compCmdSend" type = "CmdResponse" num = "0"/>
+        <source component = "dodSim" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
    <connection name = "DODManagerReply">
-        <source component = "dodSim" port = "cmdStatus" type = "CmdResponse" num = "0"/>
-        <target component = "cmdDisp" port = "compCmdSend" type = "CmdResponse" num = "0"/>
+        <source component = "dodSim" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
 
    <!-- Event Logger Binary Connections -->
@@ -1223,8 +1223,8 @@
 
    <!-- DODMonitor-DODDriver Connection -->
    <connection name = "MonitorDODReqConnection">
-       <source component = "dodMonitor" port = "monitorDODReqOut" type = "Ref::DODMonitorReq" num = "0"/>
-        <target component = "dodManager" port = "monitorDODReqIn" type = "Ref::DODMonitorReq" num = "0"/>
+       <source component = "dodMonitor" port = "MonitorDODReqOut" type = "Ref::DODMonitorReq" num = "0"/>
+        <target component = "dodManager" port = "MonitorDODReqIn" type = "Ref::DODMonitorReq" num = "0"/>
    </connection>
    <connection name = "MonitorDODCheckConnection">
        <source component = "dodManager" port = "dodOut" type = "Ref::DODMonitorCheck" num = "0"/>
@@ -1297,7 +1297,7 @@
 
    <!-- Scheduler-DODMonitor Connection -->
    <connection name = "DODMonitorThreshConnection">
-       <source component = "scheduler" port = "threshOut" type = "Ref::SchedDODThresh" num = "0"/>
+       <source component = "scheduler" port = "dodThreshOut" type = "Ref::SchedDODThresh" num = "0"/>
         <target component = "dodMonitor" port = "threshIn" type = "Ref::SchedDODThresh" num = "0"/>
    </connection>
 
