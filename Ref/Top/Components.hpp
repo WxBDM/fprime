@@ -36,6 +36,10 @@
 #include <Ref/Controller/ControllerComponentImpl.hpp>
 #include <Ref/Scheduler/SchedulerComponentImpl.hpp>
 
+#include <Ref/IMUSim/IMUSimComponentImpl.hpp>
+#include <Ref/IMUDriver/IMUDriverComponentImpl.hpp>
+#include <Ref/IMUManager/IMUManagerComponentImpl.hpp>
+
 void constructRefArchitecture(void);
 bool constructApp(bool dump, U32 port_number, char* hostname);
 void exitTasks(void);
@@ -76,5 +80,8 @@ extern Ref::ScienceDriverComponentImpl scienceDriver;
 extern Ref::ScienceManagerComponentImpl scienceManager;
 extern Ref::ControllerComponentImpl controller;
 extern Ref::SchedulerComponentImpl scheduler;
+extern Ref::IMUSimComponentImpl imuSim;
+extern Ref::IMUDriverComponentImpl imuDriver;
+extern Ref::IMUManagerComponentImpl imuManager;
 
 #endif

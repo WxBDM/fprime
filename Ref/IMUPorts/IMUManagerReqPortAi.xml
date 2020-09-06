@@ -1,0 +1,8 @@
+<!-- IMU Manager Request (FROM manager TO your component) -->
+<interface name="IMUManagerReq" namespace="Ref">
+    <args>
+        <arg name="request_x" type="F32"> </arg>
+        <arg name="request_y" type="F32"> </arg>
+        <arg name="request_z" type="F32"> </arg>
+    </args>
+</interface>

@@ -1,0 +1,49 @@
+<component name="IMUManager" kind="active" namespace="Ref">
+    <import_port_type>Ref/IMUPorts/IMUManagerReqPortAi.xml</import_port_type>
+    <import_port_type>Ref/IMUPorts/IMUDriverResPortAi.xml</import_port_type>
+    <import_port_type>Svc/Sched/SchedPortAi.xml</import_port_type>
+    
+    <ports>
+        <!-- Driver result to Manager -->
+        <port name="angvelIn" data_type="Ref::IMUDriverRes" kind="async_input"> </port>
+        
+        <!-- Manager Request to Driver -->
+        <port name="angvelOut" data_type="Ref::IMUManagerReq" kind="output"> </port>
+        
+        <!-- Scheduler Input -->
+        <port name="SchedIn" data_type="Sched" kind="async_input"> </port>
+    </ports>
+    
+    <commands>
+        <!-- Commands FROM ground -->
+        <command kind="async" opcode="0" mnemonic="IMU_MANAGER_ENABLE_AUTO_CHECK"> </command>
+        <command kind="async" opcode="1" mnemonic="IMU_MANAGER_DISABLE_AUTO_CHECK"> </command>
+    </commands>
+    
+    <telemetry>
+        <!-- Downlink the last temperature stored in manager -->
+        <channel id="0" name="IMU_MANAGER_LAST_TEMP" data_type="F32">
+        </channel>
+    </telemetry>
+    
+    <events>
+       <event id="0" name="IMU_MANAGER_REQUEST_RECEIVED" severity="ACTIVITY_LO" format_string = "IMUManager received angular velocity requests (x: %f, y: %f, z: %f) from Scheduler" >
+           <args>
+               <arg name="reqX" type="F32"> </arg>
+               <arg name="reqY" type="F32"> </arg>
+               <arg name="reqZ" type="F32"> </arg>
+           </args>
+       </event>
+       <event id="1" name="IMU_MANAGER_AUTOCHECK_ENABLED" severity="ACTIVITY_LO" format_string = "IMUManager autocheck status: %f (enabled)" >
+           <args>
+               <arg name="status" type="U32"> </arg>
+           </args>
+       </event>
+       <event id="2" name="IMU_MANAGER_AUTOCHECK_DISABLED" severity="ACTIVITY_LO" format_string = "IMUManager autocheck status: %f (disabled)" >
+           <args>
+               <arg name="status" type="U32"> </arg>
+           </args>
+       </event>
+   </events>
+    
+</component>

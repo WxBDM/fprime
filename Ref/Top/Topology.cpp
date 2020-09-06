@@ -148,6 +148,24 @@ Ref::SchedulerComponentImpl scheduler
 #endif
 ;
 
+Ref::IMUSimComponentImpl imuSim
+#if FW_OBJECT_NAMES == 1
+    ("imuSim")
+#endif
+;
+
+Ref::IMUDriverComponentImpl imuDriver
+#if FW_OBJECT_NAMES == 1
+    ("imuDriver")
+#endif
+;
+
+Ref::IMUManagerComponentImpl imuManager
+#if FW_OBJECT_NAMES == 1
+    ("imuManager")
+#endif
+;
+
 Svc::AssertFatalAdapterComponentImpl fatalAdapter("fatalAdapter");
 
 Svc::FatalHandlerComponentImpl fatalHandler("fatalHandler");
@@ -249,6 +267,10 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
     tempSim.regCommands();
     tempManager.regCommands();
     controller.regCommands();
+    
+    imuSim.regCommands();
+    imuManager.regCommands();
+    imuDriver.regCommands();
 
     // read parameters
     prmDb.readParamFile();
@@ -305,6 +327,10 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
     scienceManager.start(0,100,10*1024);
     controller.start(0,100,10*1024);
     scheduler.start(0,100,10*1024);
+    
+    imuSim.start(0, 100, 10*1024);
+    imuManager.start(0, 100, 10*1024);
+    imuDriver.start(0, 100, 10*1024);
 
     // Initialize socket server if and only if there is a valid specification
     if (hostname != NULL && port_number != 0) {
@@ -335,5 +361,9 @@ void exitTasks(void) {
     scienceManager.exit();
     controller.exit();
     scheduler.exit();
+    
+    imuSim.exit();
+    imuManager.exit();
+    imuDriver.exit();
 }
 

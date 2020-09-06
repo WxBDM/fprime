@@ -1,0 +1,8 @@
+<!-- IMU Driver Result (FROM driver TO your component) -->
+<interface name="IMUDriverRes" namespace="Ref">
+    <args>
+        <arg name="x_axis" type="F32"> </arg>
+        <arg name="y_axis" type="F32"> </arg>
+        <arg name="z_axis" type="F32"> </arg>
+    </args>
+</interface>

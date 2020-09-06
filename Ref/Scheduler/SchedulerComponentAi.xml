@@ -1,6 +1,8 @@
 <component name="Scheduler" kind="active" namespace="Ref">
     <import_port_type>Ref/ControllerPorts/ControllerOpPortAi.xml</import_port_type>
     <import_port_type>Ref/GeneralPorts/ActiveStatusPortAi.xml</import_port_type>
+    <import_port_type>Ref/SchedulerPorts/SchedIMUPhasePortAi.xml</import_port_type>
+    <import_port_type>Ref/SchedulerPorts/SchedIMUThreshPortAi.xml</import_port_type>
     <import_port_type>Ref/SchedulerPorts/SchedHealthPhasePortAi.xml</import_port_type>
     <import_port_type>Ref/SchedulerPorts/SchedHealthThreshPortAi.xml</import_port_type>
     <ports>
@@ -11,6 +13,10 @@
         <port name="phaseOut" data_type="Ref::SchedHealthPhase" kind="output">
         </port>
         <port name="threshOut" data_type="Ref::SchedHealthThresh" kind="output">
+        </port>
+        <port name="phaseOutIMU" data_type="Ref::SchedIMUPhase" kind="output">
+        </port>
+        <port name="threshOutIMU" data_type="Ref::SchedIMUThresh" kind="output">
         </port>
     </ports>
     <events>
@@ -38,6 +44,16 @@
                 </arg>
                 <arg name="state" type="U32">  
                 </arg>     
+            </args>
+        </event>
+        <event id="3" name="SCHEDULER_UPDATE_IMU_THRESHOLD" severity="ACTIVITY_HI" format_string = "Scheduler -> IMU Manager: IMU threshold update, Phase=%d, minRot=%f, maxRot=%f" >
+            <args>
+                <arg name="phase" type="U32">
+                </arg>
+                <arg name="minTemp" type="F32">
+                </arg>
+                <arg name="maxTemp" type="F32">
+                </arg>
             </args>
         </event>
     </events>

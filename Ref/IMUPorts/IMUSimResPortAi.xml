@@ -1,0 +1,8 @@
+<!-- IMU Simulator Result (FROM simulator TO your component) -->
+<interface name="IMUSimRes" namespace="Ref">
+    <args>
+        <arg name="x_axis" type="F32"> </arg>
+        <arg name="y_axis" type="F32"> </arg>
+        <arg name="z_axis" type="F32"> </arg>
+    </args>
+</interface>

@@ -1,0 +1,37 @@
+<component name="IMUDriver" kind="active" namespace="Ref">
+
+	<import_port_type>Ref/IMUPorts/IMUDriverReqPortAi.xml</import_port_type> <!-- Driver REQUEST out -->
+	<import_port_type>Ref/IMUPorts/IMUDriverResPortAi.xml</import_port_type> <!-- Driver RESULT out -->
+	<import_port_type>Ref/IMUPorts/IMUManagerReqPortAi.xml</import_port_type> <!-- Manager REQUEST out -->
+	<import_port_type>Ref/IMUPorts/IMUSimResPortAi.xml</import_port_type> <!-- Simulator RESULT out -->
+	
+	<ports>
+		<!-- Sim to Driver -->
+		<port name="angularVelIn" data_type="Ref::IMUSimRes" kind="async_input"> </port>
+			
+		<!-- Driver to Sim -->
+		<port name="driverReqOut" data_type="Ref::IMUDriverReq" kind="output"> </port>
+			
+		<!-- Driver to Manager -->
+		<port name="angularVelOut" data_type="Ref::IMUDriverRes" kind="output"> </port>
+		
+		<!-- Manager to Driver-->
+		<port name="managerReqIn" data_type="Ref::IMUManagerReq" kind="async_input"> </port>
+	
+	</ports>
+	
+	<telemetry>
+		<!-- Downlinked information: the angular velocity -->
+        <channel id="0" name="DRIVER_LAST_ANG_VELOC" data_type="F32"> </channel>
+	</telemetry>
+	
+	<events>
+        <event id="0" name="DRIVER_ANG_VEL_REQUESTED" severity="ACTIVITY_LO" format_string = "IMU Driver received ang velocity request (x: %f, y: %f, z: %f) from IMUManager" >
+            <args>
+                <arg name="reqX" type="F32"> </arg>    
+				<arg name="reqY" type="F32"> </arg>
+				<arg name="reqZ" type="F32"> </arg>
+            </args>
+        </event>
+	</events>
+</component>

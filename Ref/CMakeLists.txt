@@ -71,6 +71,13 @@ add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/ControllerPorts/")
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Controller/")
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Scheduler/")
 
+# Added by Brandon Molyneaux
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/IMUPorts/")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/IMUSim/")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/IMUDriver/")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/IMUManager/")
+
+
 
 # Add Topology subdirectory
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Top/")

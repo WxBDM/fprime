@@ -3,6 +3,8 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/SchedHealthThreshPortAi.xml"
   "${CMAKE_CURRENT_LIST_DIR}/SchedHealthPhasePortAi.xml"
   "${CMAKE_CURRENT_LIST_DIR}/SchedScienceStatusPortAi.xml"
-  
+  "${CMAKE_CURRENT_LIST_DIR}/SchedIMUStatusPortAi.xml"
+  "${CMAKE_CURRENT_LIST_DIR}/SchedIMUPhasePortAi.xml"
+  "${CMAKE_CURRENT_LIST_DIR}/SchedIMUThreshPortAi.xml"
 )
 register_fprime_module()
