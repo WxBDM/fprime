@@ -3,6 +3,8 @@
     <import_port_type>Ref/GeneralPorts/ActiveStatusPortAi.xml</import_port_type>
     <import_port_type>Ref/SchedulerPorts/SchedHealthPhasePortAi.xml</import_port_type>
     <import_port_type>Ref/SchedulerPorts/SchedHealthThreshPortAi.xml</import_port_type>
+    <import_port_type>Ref/SchedulerPorts/SchedMonitorBatteryPortAi.xml</import_port_type>
+    <import_port_type>Ref/SchedulerPorts/SchedDODThreshPortAi.xml</import_port_type>
     <ports>
         <port name="opIn" data_type="Ref::ControllerOp" kind="async_input">
         </port>
@@ -11,6 +13,10 @@
         <port name="phaseOut" data_type="Ref::SchedHealthPhase" kind="output">
         </port>
         <port name="threshOut" data_type="Ref::SchedHealthThresh" kind="output">
+        </port>
+        <port name="batteryOut" data_type="Ref::SchedMonitorBattery" kind="output">
+        </port>
+        <port name="threshOut" data_type="Ref::SchedDODThresh" kind="output">
         </port>
     </ports>
     <events>
@@ -40,5 +46,24 @@
                 </arg>     
             </args>
         </event>
+        <event id="3" name="SCHEDULER_UPDATE_COMPONENT_BATTERY" severity="ACTIVITY_HI" format_string = "Scheduler -> Component #%d: Battery changed to %d" >
+            <args>
+                <arg name="component" type="U32">
+                </arg>
+                <arg name="battery" type="U32">
+                </arg>           
+            </args>
+        </event>
+        <event id="4" name="SCHEDULER_UPDATE_DOD_THRESHOLD" severity="ACTIVITY_HI" format_string = "Scheduler -> DODMonitor: depth of discharge threshold update, Battery=%d, minDOD=%f, maxDOD=%f" >
+            <args>
+                <arg name="battery" type="U32">
+                </arg>   
+                <arg name="minDOD" type="F32">
+                </arg>
+                <arg name="maxDOD" type="F32">
+                </arg>        
+            </args>
+        </event>
+        <!--event id 5?-->
     </events>
 </component>

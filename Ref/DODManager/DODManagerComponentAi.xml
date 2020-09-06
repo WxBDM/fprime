@@ -1,0 +1,49 @@
+<component name="DODManager" kind="active" namespace="Ref">
+    <import_port_type>Ref/DepthOfDischargePorts/DODManagerReqPortAi.xml</import_port_type>
+    <import_port_type>Ref/DepthOfDischargePorts/DODDriverOutPortAi.xml</import_port_type>
+    <import_port_type>Ref/DODMonitorPorts/MonitorDODReqPortAi.xml</import_port_type>
+    <import_port_type>Ref/DODMonitorPorts/MonitorDODCheckPortAi.xml</import_port_type>
+    <import_port_type>Svc/Sched/SchedPortAi.xml</import_port_type>
+    <ports>
+        <port name="dodIn" data_type="Ref::DODDriverOut" kind="async_input">
+        </port>
+        <port name="managerReqOut" data_type="Ref::DODManagerReq" kind="output">
+        </port>
+        <port name="monitorDODReqIn" data_type="Ref::MonitorDODReq" kind="async_input">
+        </port>
+        <port name="dodOut" data_type="Ref::MonitorDODCheck" kind="output">
+        </port>
+        <port name="SchedIn" data_type="Sched" kind="async_input">
+        </port>
+    </ports>
+    <commands>
+        <command kind="async" opcode="0" mnemonic="DOD_MANAGER_ENABLE_AUTO_CHECK">
+        </command>
+        <command kind="async" opcode="1" mnemonic="DOD_MANAGER_DISABLE_AUTO_CHECK">
+        </command>
+    </commands>
+    <telemetry>
+        <channel id="0" name="DOD_MANAGER_LAST_DOD" data_type="F32">
+        </channel>
+    </telemetry>
+    <events>
+        <event id="0" name="DOD_MANAGER_REQUEST_RECEIVED" severity="ACTIVITY_LO" format_string = "DODManager received temperature request (%f) from Scheduler" >
+            <args>
+                <arg name="req" type="F32">
+                </arg>          
+            </args>
+        </event>
+        <event id="1" name="DOD_MANAGER_AUTOCHECK_ENABLED" severity="ACTIVITY_LO" format_string = "DODManager autocheck status: %f (enabled)" >
+            <args>
+                <arg name="status" type="U32">
+                </arg>          
+            </args>
+        </event>
+        <event id="2" name="DOD_MANAGER_AUTOCHECK_DISABLED" severity="ACTIVITY_LO" format_string = "DODManager autocheck status: %f (disabled)" >
+            <args>
+                <arg name="status" type="U32">
+                </arg>          
+            </args>
+        </event>
+    </events>
+</component>

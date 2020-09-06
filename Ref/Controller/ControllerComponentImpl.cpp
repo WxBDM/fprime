@@ -1,6 +1,6 @@
 // ======================================================================
 // \title  ControllerComponentImpl.cpp
-// \author aleha
+// \author jzl0213
 // \brief  cpp file for Controller component implementation class
 //
 // \copyright
@@ -32,6 +32,8 @@ namespace Ref {
   {
     this->currPhase = 0;
     this->tlmWrite_CONTROLLER_CURRENT_PHASE(0);
+    this->currBettery = 0;
+    this->tlmWrite_CONTROLLER_CURRENT_BATTERY(0);
   }
 
   void ControllerComponentImpl ::
@@ -74,6 +76,15 @@ namespace Ref {
       this->tlmWrite_CONTROLLER_CURRENT_PHASE(this->currPhase);
       this->log_ACTIVITY_HI_CONTROLLER_PHASE_CHANGED(this->currPhase);
     }
+  }
+
+  void ControllerComponentImpl ::
+    MonitorAlertIn_handler(
+        const NATIVE_INT_TYPE portNum,
+        U32 sourceComponent
+    )
+  {
+    // TODO
   }
 
   // ----------------------------------------------------------------------
@@ -124,6 +135,31 @@ namespace Ref {
   {
     this->opOut_out(0, 0, 1, phase, minTemp, maxTemp);
     this->log_ACTIVITY_HI_CONTROLLER_TEMP_THRESHOLD_CHANGED(phase, minTemp, maxTemp);
+    this->cmdResponse_out(opCode,cmdSeq,Fw::COMMAND_OK);
+  }
+
+  void ControllerComponentImpl ::
+    CONTROLLER_CHANGE_BATTERY_cmdHandler(
+        const FwOpcodeType opCode,
+        const U32 cmdSeq,
+        U32 battery
+    )
+  {
+    // TODO
+    this->cmdResponse_out(opCode,cmdSeq,Fw::COMMAND_OK);
+  }
+
+  void ControllerComponentImpl ::
+    CONTROLLER_CHANGE_DOD_THRESHOLD_cmdHandler(
+        const FwOpcodeType opCode,
+        const U32 cmdSeq,
+        U32 battery,
+        F32 minDOD,
+        F32 maxDOD
+    )
+  {
+    this->opOut_out(0, 0, 1, battery, minDOD, maxDOD);
+    this->log_ACTIVITY_HI_CONTROLLER_DOD_THRESHOLD_CHANGED(battery, minDOD, maxDOD);
     this->cmdResponse_out(opCode,cmdSeq,Fw::COMMAND_OK);
   }
 

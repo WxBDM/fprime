@@ -1,0 +1,7 @@
+<interface name="DODSimOut" namespace="Ref">
+	<args>
+		<arg name="depthOfDischarge" type="F32">
+		</arg>
+	</args>
+</interface>
+

@@ -1,7 +1,7 @@
 // ======================================================================
-// \title  SchedulerComponentImpl.hpp
+// \title  DODDriverComponentImpl.hpp
 // \author jzl0213
-// \brief  hpp file for Scheduler component implementation class
+// \brief  hpp file for DODDriver component implementation class
 //
 // \copyright
 // Copyright 2009-2015, by the California Institute of Technology.
@@ -10,15 +10,14 @@
 //
 // ======================================================================
 
-#ifndef Scheduler_HPP
-#define Scheduler_HPP
+#ifndef DODDriver_HPP
+#define DODDriver_HPP
 
-#include "Ref/Scheduler/SchedulerComponentAc.hpp"
+#include "Ref/DODDriver/DODDriverComponentAc.hpp"
 
 namespace Ref {
 
-  class SchedulerComponentImpl :
-    public SchedulerComponentBase
+  class DODDriverComponentImpl //: public DODDriverComponentBase
   {
 
     public:
@@ -27,9 +26,9 @@ namespace Ref {
       // Construction, initialization, and destruction
       // ----------------------------------------------------------------------
 
-      //! Construct object Scheduler
+      //! Construct object DODDriver
       //!
-      SchedulerComponentImpl(
+      DODDriverComponentImpl(
 #if FW_OBJECT_NAMES == 1
           const char *const compName /*!< The component name*/
 #else
@@ -37,16 +36,19 @@ namespace Ref {
 #endif
       );
 
-      //! Initialize object Scheduler
+      //! Initialize object DODDriver
       //!
       void init(
           const NATIVE_INT_TYPE queueDepth, /*!< The queue depth*/
           const NATIVE_INT_TYPE instance = 0 /*!< The instance number*/
       );
 
-      //! Destroy object Scheduler
+      //! Destroy object DODDriver
       //!
-      ~SchedulerComponentImpl(void);
+      ~DODDriverComponentImpl(void);
+      
+      private:
+        F32 lastDOD;
 
     PRIVATE:
 
@@ -54,15 +56,31 @@ namespace Ref {
       // Handler implementations for user-defined typed input ports
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for opIn
+      //! Handler implementation for dodIn
       //!
-      void opIn_handler(
+      void dodIn_handler(
           const NATIVE_INT_TYPE portNum, /*!< The port number*/
-          F32 time, 
-          F32 op, 
-          F32 val1, 
-          F32 val2, 
-          F32 val3 
+          F32 depthOfDischarge 
+      );
+
+      //! Handler implementation for managerReqIn
+      //!
+      void managerReqIn_handler(
+          const NATIVE_INT_TYPE portNum, /*!< The port number*/
+          F32 request 
+      );
+
+    PRIVATE:
+
+      // ----------------------------------------------------------------------
+      // Command handler implementations
+      // ----------------------------------------------------------------------
+
+      //! Implementation for DODDRIVER_TEST command handler
+      //! 
+      void DODDRIVER_TEST_cmdHandler(
+          const FwOpcodeType opCode, /*!< The opcode*/
+          const U32 cmdSeq /*!< The command sequence number*/
       );
 
 

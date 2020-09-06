@@ -1,6 +1,6 @@
 // ======================================================================
 // \title  SchedulerComponentImpl.cpp
-// \author aleha
+// \author jzl0213
 // \brief  cpp file for Scheduler component implementation class
 //
 // \copyright
@@ -73,6 +73,14 @@ namespace Ref {
     else if (op == 2) {
       this->log_ACTIVITY_HI_SCHEDULER_UPDATE_COMPONENT_STATE(val1, val2);
       this->activeStatusOut_out(0, val2);
+    }
+    else if (op == 3) {
+      this->log_ACTIVITY_HI_SCHEDULER_UPDATE_COMPONENT_BATTERY(val1, val2, val3);
+      this->threshOut_out(0, val2);
+    }
+    else if (op == 4) {
+      this->log_ACTIVITY_HI_SCHEDULER_UPDATE_DOD_THRESHOLD(val1, val2);
+      this->activeStatusOut_out(0, val1, val2, val3);
     }
   }
 

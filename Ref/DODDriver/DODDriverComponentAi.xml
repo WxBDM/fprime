@@ -1,0 +1,32 @@
+<component name="DODDriver" kind="active" namespace="Ref">
+    <import_port_type>Ref/DepthOfDischargePorts/DODDriverReqPortAi.xml</import_port_type>
+    <import_port_type>Ref/DepthOfDischargePorts/DODSimOutPortAi.xml</import_port_type>
+    <import_port_type>Ref/DepthOfDischargePorts/DODManagerReqPortAi.xml</import_port_type>
+    <import_port_type>Ref/DepthOfDischargePorts/DODDriverOutPortAi.xml</import_port_type>
+    <ports>
+        <port name="dodIn" data_type="Ref::DODSimOut" kind="async_input">
+        </port>
+        <port name="driverReqOut" data_type="Ref::DODDriverReq" kind="output">
+        </port>
+        <port name="managerReqIn" data_type="Ref::DODManagerReq" kind="async_input">
+        </port>
+        <port name="dodOut" data_type="Ref::DODDriverOut" kind="output">
+        </port>
+    </ports>
+    <telemetry>
+        <channel id="0" name="DRIVER_LAST_DOD" data_type="F32">
+        </channel>
+    </telemetry>
+    <events>
+        <event id="0" name="DRIVER_DOD_REQUESTED" severity="ACTIVITY_LO" format_string = "DODDriver received depth of discharge request (%f) from DODManager" >
+            <args>
+                <arg name="req" type="F32">
+                </arg>          
+            </args>
+        </event>
+    </events>
+    <commands>
+	    <command kind="async" opcode="0" mnemonic="DODDRIVER_TEST">
+	    </command>
+    </commands>
+</component>

@@ -148,11 +148,35 @@ Ref::SchedulerComponentImpl scheduler
 #endif
 ;
 
+Ref::DODSimComponentImpl dodSim
+#if FW_OBJECT_NAMES == 1
+    ("dodSim")
+#endif
+;
+
+Ref::DODDriverComponentImpl dodDriver
+#if FW_OBJECT_NAMES == 1
+    ("dodDriver")
+#endif
+;
+Ref::DODManagerComponentImpl dodManager
+#if FW_OBJECT_NAMES == 1
+    ("dodManager")
+#endif
+;
+
+Ref::DODMonitorComponentImpl dodMonitor
+#if FW_OBJECT_NAMES == 1
+    ("dodMonitor")
+#endif
+;
+
 Svc::AssertFatalAdapterComponentImpl fatalAdapter("fatalAdapter");
 
 Svc::FatalHandlerComponentImpl fatalHandler("fatalHandler");
 
-bool constructApp(bool dump, U32 port_number, char* hostname) {
+bool constructApp(//bool dump, U32 port_number, char* hostname
+) {
 
 #if FW_PORT_TRACING
     Fw::PortBase::setTrace(false);
@@ -218,6 +242,11 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
     scienceManager.init(10, 0);
     controller.init(10, 0);
     scheduler.init(10, 0);
+    dodSim.init(10, 0);
+    dodDriver.init(10, 0);
+    dodManager.init(10, 0);
+    dodMonitor.init(10, 0);
+#if FW_OBJECT_NAMES == 1
 
     // Connect rate groups to rate group driver
     constructRefArchitecture();
@@ -249,6 +278,8 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
     tempSim.regCommands();
     tempManager.regCommands();
     controller.regCommands();
+    dodSim.regCommands();
+    dodManager.regCommand();
 
     // read parameters
     prmDb.readParamFile();
@@ -305,6 +336,10 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
     scienceManager.start(0,100,10*1024);
     controller.start(0,100,10*1024);
     scheduler.start(0,100,10*1024);
+    dodSim.start(0,100,10*1024);
+    dodDriver.start(0,100,10*1024);
+    dodManager.start(0,100,10*1024);
+    dodMonitor.start(0,100,10*1024);
 
     // Initialize socket server if and only if there is a valid specification
     if (hostname != NULL && port_number != 0) {
@@ -335,5 +370,9 @@ void exitTasks(void) {
     scienceManager.exit();
     controller.exit();
     scheduler.exit();
+    dodSim.exit();
+    dodDriver.exit();
+    dodManager.exit();
+    dodMonitor.exit();
 }
 

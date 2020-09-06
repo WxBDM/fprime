@@ -1,0 +1,36 @@
+<component name="DODSim" kind="active" namespace="Ref">
+	<import_port_type>Ref/DepthOfDischargePorts/DODDriverReqPortAi.xml</import_port_type>
+	<import_port_type>Ref/DepthOfDischargePorts/DODSimOutPortAi.xml</import_port_type>
+	<ports>
+		<port name="dodOut" data_type="Ref::DODSimOut" kind="output">
+		</port>
+		<port name="driverReqIn" data_type="Ref::DODDriverReq" kind="async_input">
+		</port>
+	</ports>
+	<commands>
+		<command kind="async" opcode="0" mnemonic="DODSIM_SET_DOD">
+			<args>
+				<arg name="depthOfDischarge" type="F32">
+				</arg>
+			</args>
+		</command>
+	</commands>
+	<telemetry>
+		<channel id="0" name="DODSIM_CURR_DOD" data_type="F32">
+		</channel>
+	</telemetry>
+	<events>
+		<event id="0" name="DODSIM_DOD_CHANGED" severity="ACTIVITY_HI" format_string="Depth of Discharge changed to %f" >
+			<args>
+				<arg name="newDOD" type="F32">
+				</arg>
+			</args>
+		</event>
+		<event id="1" name="DODSIM_TEMP_REQUESTED" severity="ACTIVITY_LO" format_string = "DODSim received depth of discharge request (%f) from DODDriver" >
+			<args>
+				<arg name="req" type="F32">
+				</arg>
+			</args>
+		</event>
+	</events>
+</component>

@@ -1,7 +1,7 @@
 // ======================================================================
-// \title  ControllerComponentImpl.hpp
-// \author aleha
-// \brief  hpp file for Controller component implementation class
+// \title  DODSimComponentImpl.hpp
+// \author jzl0213
+// \brief  hpp file for DODSim component implementation class
 //
 // \copyright
 // Copyright 2009-2015, by the California Institute of Technology.
@@ -10,15 +10,15 @@
 //
 // ======================================================================
 
-#ifndef Controller_HPP
-#define Controller_HPP
+#ifndef DODSim_HPP
+#define DODSim_HPP
 
-#include "Ref/Controller/ControllerComponentAc.hpp"
+#include "Ref/DODSim/DODSimComponentAc.hpp"
 
 namespace Ref {
 
-  class ControllerComponentImpl :
-    public ControllerComponentBase
+  class DODSimComponentImpl :
+    public DODSimComponentBase
   {
 
     public:
@@ -27,9 +27,9 @@ namespace Ref {
       // Construction, initialization, and destruction
       // ----------------------------------------------------------------------
 
-      //! Construct object Controller
+      //! Construct object DODSim
       //!
-      ControllerComponentImpl(
+      DODSimComponentImpl(
 #if FW_OBJECT_NAMES == 1
           const char *const compName /*!< The component name*/
 #else
@@ -37,19 +37,32 @@ namespace Ref {
 #endif
       );
 
-      //! Initialize object Controller
+      //! Initialize object DODSim
       //!
       void init(
           const NATIVE_INT_TYPE queueDepth, /*!< The queue depth*/
           const NATIVE_INT_TYPE instance = 0 /*!< The instance number*/
       );
 
-      //! Destroy object Controller
+      //! Destroy object DODSim
       //!
-      ~ControllerComponentImpl(void);
+      ~DODSimComponentImpl(void);
 
       private:
-        U32 currPhase;
+			  F32 currDOD = 50;
+      
+    PRIVATE:
+
+      // ----------------------------------------------------------------------
+      // Handler implementations for user-defined typed input ports
+      // ----------------------------------------------------------------------
+
+      //! Handler implementation for driverReqIn
+      //!
+      void driverReqIn_handler(
+          const NATIVE_INT_TYPE portNum, /*!< The port number*/
+          F32 request 
+      );
 
     PRIVATE:
 
@@ -57,22 +70,12 @@ namespace Ref {
       // Command handler implementations
       // ----------------------------------------------------------------------
 
-      //! Implementation for CONTROLLER_CHANGE_PHASE command handler
+      //! Implementation for DODSIM_SET_DOD command handler
       //! 
-      void CONTROLLER_CHANGE_PHASE_cmdHandler(
+      void DODSIM_SET_DOD_cmdHandler(
           const FwOpcodeType opCode, /*!< The opcode*/
           const U32 cmdSeq, /*!< The command sequence number*/
-          U32 phase 
-      );
-
-      //! Implementation for CONTROLLER_CHANGE_TEMP_THRESHOLD command handler
-      //! 
-      void CONTROLLER_CHANGE_TEMP_THRESHOLD_cmdHandler(
-          const FwOpcodeType opCode, /*!< The opcode*/
-          const U32 cmdSeq, /*!< The command sequence number*/
-          U32 phase, 
-          F32 minTemp, 
-          F32 maxTemp 
+          F32 depthOfDischarge 
       );
 
 

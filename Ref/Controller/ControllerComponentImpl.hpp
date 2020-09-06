@@ -1,6 +1,6 @@
 // ======================================================================
 // \title  ControllerComponentImpl.hpp
-// \author aleha
+// \author jzl0213
 // \brief  hpp file for Controller component implementation class
 //
 // \copyright
@@ -50,6 +50,7 @@ namespace Ref {
 
       private:
         U32 currPhase;
+        U32 currBattery;
 
     PRIVATE:
 
@@ -62,6 +63,13 @@ namespace Ref {
       void healthAlertIn_handler(
           const NATIVE_INT_TYPE portNum, /*!< The port number*/
           U32 enterSafeMode, 
+          U32 sourceComponent 
+      );
+
+      //! Handler implementation for MonitorAlertIn
+      //!
+      void MonitorAlertIn_handler(
+          const NATIVE_INT_TYPE portNum, /*!< The port number*/
           U32 sourceComponent 
       );
 
@@ -87,6 +95,24 @@ namespace Ref {
           U32 phase, 
           F32 minTemp, 
           F32 maxTemp 
+      );
+
+      //! Implementation for CONTROLLER_CHANGE_BATTERY command handler
+      //! 
+      void CONTROLLER_CHANGE_BATTERY_cmdHandler(
+          const FwOpcodeType opCode, /*!< The opcode*/
+          const U32 cmdSeq, /*!< The command sequence number*/
+          U32 battery 
+      );
+
+      //! Implementation for CONTROLLER_CHANGE_DOD_THRESHOLD command handler
+      //! 
+      void CONTROLLER_CHANGE_DOD_THRESHOLD_cmdHandler(
+          const FwOpcodeType opCode, /*!< The opcode*/
+          const U32 cmdSeq, /*!< The command sequence number*/
+          U32 battery, 
+          F32 minDOD, 
+          F32 maxDOD 
       );
 
 

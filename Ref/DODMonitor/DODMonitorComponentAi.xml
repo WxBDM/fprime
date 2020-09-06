@@ -1,0 +1,52 @@
+<component name="DODMonitor" kind="active" namespace="Ref">
+    <import_port_type>Ref/DODMonitorPorts/MonitorDODReqPortAi.xml</import_port_type>
+    <import_port_type>Ref/DODMonitorPorts/MonitorDODCheckPortAi.xml</import_port_type>
+    <import_port_type>Svc/Sched/SchedPortAi.xml</import_port_type>
+    <import_port_type>Ref/DODMonitorPorts/MonitorAlertPortAi.xml</import_port_type>
+    <import_port_type>Ref/SchedulerPorts/SchedMonitorBatteryPortAi.xml</import_port_type>
+    <import_port_type>Ref/SchedulerPorts/SchedDODThreshPortAi.xml</import_port_type>
+    <ports>
+        <port name="dodIn" data_type="Ref::MonitorDODCheck" kind="async_input">
+        </port>
+        <port name="batteryIn" data_type="Ref::SchedMonitorBattery" kind="async_input">
+        </port>
+        <port name="threshIn" data_type="Ref::SchedDODThresh" kind="async_input">
+        </port>
+        <port name="monitorDODReqOut" data_type="Ref::MonitorDODReq" kind="output">
+        </port>
+        <port name="monitorAlertOut" data_type="Ref::MonitorAlert" kind="output">
+        </port>
+        <port name="SchedIn" data_type="Sched" kind="async_input">
+        </port>
+    </ports>
+    <telemetry>
+        <channel id="0" name="MONITOR_DOD_CURR_BATTERY" data_type="U32">
+        </channel>
+        <channel id="1" name="MONITOR_LAST_DOD" data_type="F32">
+        </channel>
+    </telemetry>
+    <events>
+        <event id="0" name="MONITOR_DOD_CRITICAL_HI" severity="WARNING_HI" format_string = "WARNING: CRITICALLY HIGH DEPTH OF DISCHARGE %f" >
+            <args>
+                <arg name="depthOfDischarge" type="F32">
+                </arg>          
+            </args>
+        </event>
+        <event id="1" name="MONITOR_DOD_CRITICAL_LO" severity="WARNING_HI" format_string = "WARNING: CRITICALLY LOW DEPTH OF DISCHARGE %f" >
+            <args>
+                <arg name="depthOfDischarge" type="F32">
+                </arg>          
+            </args>
+        </event>
+        <event id="2" name="MONITOR_DOD_THRESHOLD_CHANGED" severity="ACTIVITY_HI" format_string = "Battery %d now has MIN DOD of %f and MAX DOD of %f" >
+            <args>
+                <arg name="battery" type="U32">
+                </arg>   
+                <arg name="minDOD" type="F32">
+                </arg>  
+                <arg name="maxDOD" type="F32">
+                </arg>       
+            </args>
+        </event>
+    </events>
+</component>

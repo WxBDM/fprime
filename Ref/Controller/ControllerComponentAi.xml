@@ -1,10 +1,13 @@
 <component name="Controller" kind="active" namespace="Ref">
     <import_port_type>Ref/ControllerPorts/ControllerOpPortAi.xml</import_port_type>
     <import_port_type>Ref/HealthMonitorPorts/HealthAlertPortAi.xml</import_port_type>
+    <import_port_type>Ref/DODMonitorPorts/MonitorAlertPortAi.xml</import_port_type>
     <ports>
         <port name="opOut" data_type="Ref::ControllerOp" kind="output">
         </port>
         <port name="healthAlertIn" data_type="Ref::HealthAlert" kind="async_input">
+        </port>
+        <port name="MonitorAlertIn" data_type="Ref::MonitorAlert" kind="async_input">
         </port>
     </ports>
     <commands>
@@ -24,9 +27,27 @@
                 </arg>
             </args>
         </command>
+        <command kind="async" opcode="3" mnemonic="CONTROLLER_CHANGE_BATTERY">
+            <args>
+                <arg name="battery" type="U32">
+                </arg>
+            </args>
+        </command>
+        <command kind="async" opcode="4" mnemonic="CONTROLLER_CHANGE_DOD_THRESHOLD">
+            <args>
+                <arg name="battery" type="U32">
+                </arg>
+                <arg name="minDOD" type="F32">
+                </arg>
+                <arg name="maxDOD" type="F32">
+                </arg>
+            </args>
+        </command>
     </commands>
     <telemetry>
         <channel id="0" name="CONTROLLER_CURRENT_PHASE" data_type="U32">
+        </channel>
+        <channel id="1" name="CONTROLLER_CURRENT_BATTERY" data_type="U32">
         </channel>
     </telemetry>
     <events>
@@ -61,6 +82,28 @@
         <event id="4" name="CONTROLLER_NON_ESSENTIAL_COMPONENTS_DISABLED" severity="WARNING_HI" format_string = "ALERT: DISABLING %d NON-ESSENTIAL COMPONENT(S)" >
             <args>
                 <arg name="numDisabled" type="U32">
+                </arg>         
+            </args>
+        </event>
+        <event id="5" name="CONTROLLER_MONITOR_ALERT_RECEIVED" severity="WARNING_HI" format_string = "WARNING: MONITOR ALERT TRIGGERED BY COMPONENT #%d" >
+            <args>
+                <arg name="component" type="U32">
+                </arg>          
+            </args>
+        </event>
+        <event id="6" name="CONTROLLER_BATTERY_CHANGED" severity="ACTIVITY_HI" format_string = "Changing Battery to %d" >
+            <args>
+                <arg name="battery" type="U32">
+                </arg>          
+            </args>
+        </event>
+        <event id="7" name="CONTROLLER_DOD_THRESHOLD_CHANGED" severity="ACTIVITY_HI" format_string = "Sending Threshold Change Command: Battery=%d, MIN DOD=%f, MAX DOD=%f" >
+            <args>
+                <arg name="battery" type="U32">
+                </arg>
+                <arg name="minDOD" type="F32">
+                </arg>
+                <arg name="maxDOD" type="F32">
                 </arg>         
             </args>
         </event>
