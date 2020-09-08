@@ -958,24 +958,25 @@
    
     <!-- Command Reply Ports - Go to the same response port on the dispatcher -->
 
+
    <connection name = "TempSimReply">
-      <source component = "tempSim" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+      <source component = "tempSim" port = "CmdStatus" type = "CmdResponse" num = "20"/>
       <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
    <connection name = "TempManagerReply">
-      <source component = "tempManager" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+      <source component = "tempManager" port = "CmdStatus" type = "CmdResponse" num = "22"/>
       <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
    <connection name = "ControllerReply">
-      <source component = "controller" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+      <source component = "controller" port = "CmdStatus" type = "CmdResponse" num = "24"/>
       <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
    <connection name = "DODSimReply">
-        <source component = "dodSim" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <source component = "dodSim" port = "CmdStatus" type = "CmdResponse" num = "26"/>
         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
    <connection name = "DODManagerReply">
-        <source component = "dodSim" port = "CmdStatus" type = "CmdResponse" num = "0"/>
+        <source component = "dodSim" port = "CmdStatus" type = "CmdResponse" num = "28"/>
         <target component = "cmdDisp" port = "compCmdStat" type = "CmdResponse" num = "0"/>
    </connection>
 
@@ -1223,8 +1224,8 @@
 
    <!-- DODMonitor-DODDriver Connection -->
    <connection name = "MonitorDODReqConnection">
-       <source component = "dodMonitor" port = "MonitorDODReqOut" type = "Ref::DODMonitorReq" num = "0"/>
-        <target component = "dodManager" port = "MonitorDODReqIn" type = "Ref::DODMonitorReq" num = "0"/>
+       <source component = "dodMonitor" port = "monitorDODReqOut" type = "Ref::DODMonitorReq" num = "0"/>
+        <target component = "dodManager" port = "monitorDODReqIn" type = "Ref::DODMonitorReq" num = "0"/>
    </connection>
    <connection name = "MonitorDODCheckConnection">
        <source component = "dodManager" port = "dodOut" type = "Ref::DODMonitorCheck" num = "0"/>
@@ -1267,7 +1268,7 @@
    <!-- DODMonitor-Controller Connection -->
    <connection name = "DODMonitorConnection">
        <source component = "dodMonitor" port = "monitorAlertOut" type = "Ref::MonitorAlert" num = "0"/>
-        <target component = "controller" port = "monitorAlertIn" type = "Ref::MonitorAlert" num = "0"/>
+        <target component = "controller" port = "MonitorAlertIn" type = "Ref::MonitorAlert" num = "0"/>
    </connection>
 
 
