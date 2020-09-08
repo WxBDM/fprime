@@ -71,5 +71,16 @@ namespace Ref {
   {
     this->driverReqOut_out(0, 1);
   }
+  //bellow is possible shitty solution
+    void DODDriverComponentImpl ::
+    DODDRIVER_TEST_cmdHandler(
+          const FwOpcodeType opCode, /*!< The opcode*/
+          const U32 cmdSeq /*!< The command sequence number*/
+      ) 
+   {
+   //todo
+   }
+
+  
   
 } // end namespace Ref
